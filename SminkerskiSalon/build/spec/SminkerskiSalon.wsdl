@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/SminkerskiSalon/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SminkerskiSalon" targetNamespace="http://www.example.org/SminkerskiSalon/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/SminkerskiSalon/">
+      <xsd:element name="login">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="tns:MusterijaType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="loginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="tns:MusterijaType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="MusterijaType">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int"></xsd:element>
+      		<xsd:element name="brojTelefona" type="xsd:string"></xsd:element>
+      		<xsd:element name="ime" type="xsd:string"></xsd:element>
+      		<xsd:element name="prezime" type="xsd:string"></xsd:element>
+      		<xsd:element name="password" type="xsd:string"></xsd:element>
+      		<xsd:element name="termini" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="vratiSveSminkere">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="vratiSveSminkereResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:SminkerType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="SminkerType">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int"></xsd:element>
+      		<xsd:element name="ime" type="xsd:string"></xsd:element>
+      		<xsd:element name="prezime" type="xsd:string"></xsd:element>
+      		<xsd:element name="staz" type="xsd:int"></xsd:element>
+      		<xsd:element name="termini" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="listaKorisnikovihTermina">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="listaKorisnikovihTerminaResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="TerminType">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int"></xsd:element>
+      		<xsd:element name="datum" type="xsd:string"></xsd:element>
+      		<xsd:element name="musterija" type="tns:MusterijaType"></xsd:element>
+      		<xsd:element name="sminker" type="tns:SminkerType"></xsd:element>
+      		<xsd:element name="komentar" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="dodajKomentarNaTermin">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:TerminType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="dodajKomentarNaTerminResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="vratiSveTermineSminkera">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="vratiSveTermineSminkeraResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="zakazi">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:TerminType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="zakaziResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="vratiKomentareZaSminkera">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="vratiKomentareZaSminkeraResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:string" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="loginRequest">
+    <wsdl:part element="tns:login" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part element="tns:loginResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="vratiSveSminkereRequest">
+  	<wsdl:part name="parameters" element="tns:vratiSveSminkere"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="vratiSveSminkereResponse">
+  	<wsdl:part name="parameters" element="tns:vratiSveSminkereResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaKorisnikovihTerminaRequest">
+  	<wsdl:part name="parameters" element="tns:listaKorisnikovihTermina"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaKorisnikovihTerminaResponse">
+  	<wsdl:part name="parameters" element="tns:listaKorisnikovihTerminaResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="dodajKomentarNaTerminRequest">
+  	<wsdl:part name="parameters" element="tns:dodajKomentarNaTermin"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="dodajKomentarNaTerminResponse">
+  	<wsdl:part name="parameters" element="tns:dodajKomentarNaTerminResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="vratiSveTermineSminkeraRequest">
+  	<wsdl:part name="parameters" element="tns:vratiSveTermineSminkera"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="vratiSveTermineSminkeraResponse">
+  	<wsdl:part name="parameters" element="tns:vratiSveTermineSminkeraResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="zakaziRequest">
+  	<wsdl:part name="parameters" element="tns:zakazi"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="zakaziResponse">
+  	<wsdl:part name="parameters" element="tns:zakaziResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="vratiKomentareZaSminkeraRequest">
+  	<wsdl:part name="parameters" element="tns:vratiKomentareZaSminkera"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="vratiKomentareZaSminkeraResponse">
+  	<wsdl:part name="parameters" element="tns:vratiKomentareZaSminkeraResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SminkerskiSalon">
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginRequest"/>
+      <wsdl:output message="tns:loginResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="vratiSveSminkere">
+    	<wsdl:input message="tns:vratiSveSminkereRequest"></wsdl:input>
+    	<wsdl:output message="tns:vratiSveSminkereResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaKorisnikovihTermina">
+    	<wsdl:input message="tns:listaKorisnikovihTerminaRequest"></wsdl:input>
+    	<wsdl:output message="tns:listaKorisnikovihTerminaResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dodajKomentarNaTermin">
+    	<wsdl:input message="tns:dodajKomentarNaTerminRequest"></wsdl:input>
+    	<wsdl:output message="tns:dodajKomentarNaTerminResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vratiSveTermineSminkera">
+    	<wsdl:input message="tns:vratiSveTermineSminkeraRequest"></wsdl:input>
+    	<wsdl:output message="tns:vratiSveTermineSminkeraResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="zakazi">
+    	<wsdl:input message="tns:zakaziRequest"></wsdl:input>
+    	<wsdl:output message="tns:zakaziResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vratiKomentareZaSminkera">
+    	<wsdl:input message="tns:vratiKomentareZaSminkeraRequest"></wsdl:input>
+    	<wsdl:output message="tns:vratiKomentareZaSminkeraResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SminkerskiSalonSOAP" type="tns:SminkerskiSalon">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://www.example.org/SminkerskiSalon/login"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SminkerskiSalon">
+    <wsdl:port binding="tns:SminkerskiSalonSOAP" name="SminkerskiSalonSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/Frizerski/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Frizerski" targetNamespace="http://www.example.org/Frizerski/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/Frizerski/">
+      <xsd:element name="terminiMusterije">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="terminiMusterijeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="vratiSveFrizere">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="vratiSveFrizereResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:FrizerType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="slobodniTerminiFrizera">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="slobodniTerminiFrizeraResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="zakaziTermin">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:TerminType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="zakaziTerminResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="TerminType">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int"></xsd:element>
+      		<xsd:element name="datum" type="xsd:string"></xsd:element>
+      		<xsd:element name="frizer" type="tns:FrizerType"></xsd:element>
+      		<xsd:element name="musterija" type="tns:MusterijaType"></xsd:element>
+      		<xsd:element name="frizura" type="tns:FrizuraType"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="FrizerType">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int"></xsd:element>
+      		<xsd:element name="ime" type="xsd:string"></xsd:element>
+      		<xsd:element name="prezime" type="xsd:string"></xsd:element>
+      		<xsd:element name="staz" type="xsd:int"></xsd:element>
+      		<xsd:element name="termini" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="MusterijaType">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int"></xsd:element>
+      		<xsd:element name="ime" type="xsd:string"></xsd:element>
+      		<xsd:element name="prezime" type="xsd:string"></xsd:element>
+      		<xsd:element name="termini" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="FrizuraType">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int"></xsd:element>
+      		<xsd:element name="farbanje" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="feniranje" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="sisanje" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="termini" type="tns:TerminType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="terminiMusterijeRequest">
+    <wsdl:part element="tns:terminiMusterije" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="terminiMusterijeResponse">
+    <wsdl:part element="tns:terminiMusterijeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="vratiSveFrizereRequest">
+  	<wsdl:part name="parameters" element="tns:vratiSveFrizere"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="vratiSveFrizereResponse">
+  	<wsdl:part name="parameters" element="tns:vratiSveFrizereResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="slobodniTerminiFrizeraRequest">
+  	<wsdl:part name="parameters" element="tns:slobodniTerminiFrizera"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="slobodniTerminiFrizeraResponse">
+  	<wsdl:part name="parameters" element="tns:slobodniTerminiFrizeraResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="zakaziTerminRequest">
+  	<wsdl:part name="parameters" element="tns:zakaziTermin"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="zakaziTerminResponse">
+  	<wsdl:part name="parameters" element="tns:zakaziTerminResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Frizerski">
+    <wsdl:operation name="terminiMusterije">
+      <wsdl:input message="tns:terminiMusterijeRequest"/>
+      <wsdl:output message="tns:terminiMusterijeResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="vratiSveFrizere">
+    	<wsdl:input message="tns:vratiSveFrizereRequest"></wsdl:input>
+    	<wsdl:output message="tns:vratiSveFrizereResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="slobodniTerminiFrizera">
+    	<wsdl:input message="tns:slobodniTerminiFrizeraRequest"></wsdl:input>
+    	<wsdl:output message="tns:slobodniTerminiFrizeraResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="zakaziTermin">
+    	<wsdl:input message="tns:zakaziTerminRequest"></wsdl:input>
+    	<wsdl:output message="tns:zakaziTerminResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FrizerskiSOAP" type="tns:Frizerski">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="terminiMusterije">
+      <soap:operation soapAction="http://www.example.org/Frizerski/terminiMusterije"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Frizerski">
+    <wsdl:port binding="tns:FrizerskiSOAP" name="FrizerskiSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
